@@ -25,4 +25,12 @@ func main() {
 	// a shorthand for `var f string = "apple"`
 	f := "apple"
 	fmt.Println(f)
+
+	// variable scope
+	{
+		x := "x"
+		fmt.Println(x)
+	}
+	// fmt.Println(x) // no "x" here
+
 }
