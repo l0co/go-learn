@@ -32,6 +32,14 @@ func plus2(nums ...int) {
 	}
 }
 
+// recursion is supported
+func fact(n int) int {
+	if n == 0 {
+		return 1
+	}
+	return n * fact(n-1)
+}
+
 func main() {
 
 	{
@@ -64,5 +72,8 @@ func main() {
 	// plus2: 2 -> 5
 	// plus2: 3 -> 6
 	// plus2: 4 -> 7
+
+	// recursion:
+	fmt.Println("fact:", fact(10)) // fact: 3628800
 
 }
