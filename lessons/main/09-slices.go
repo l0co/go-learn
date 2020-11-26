@@ -4,6 +4,7 @@ import (
 	"fmt"
 )
 
+// slice is a list
 func main() {
 
 	// slice is like array, here we create a slice with three zero-valued strings (empty strings)
