@@ -6,7 +6,7 @@ import "fmt"
 func main() {
 
 	// standard if
-	if 7%2 == 0 { // no brackets
+	if 7%2 == 0 { // no brackets for condition
 		fmt.Println("7 is even")
 	} else {
 		fmt.Println("7 is odd")

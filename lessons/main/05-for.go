@@ -24,7 +24,7 @@ func main() {
 	fmt.Println("\nloop3")
 	for {
 		fmt.Println(1)
-		break // withg break
+		break // with break
 	}
 	// 1
 
