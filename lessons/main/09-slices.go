@@ -7,20 +7,19 @@ import (
 // slice is a list
 func main() {
 
-	// slice is like array, here we create a slice with three zero-valued strings (empty strings)
+	// slice is like array, here we create a slice with three zero-valued strings
 	var s []string // slice variable is declared as array
 	s = make([]string, 3)
-	fmt.Println("emp:", s)
-	// emp: [  ]
+	fmt.Println("emp:", s)           // emp: [  ]
+	fmt.Println("len(emp):", len(s)) // lem(emp): 3
+	if s[0] == "" {                  // zero-valued string is an empty string
+		fmt.Println("empty string")
+	}
+	// empty string
 
 	// declaring a slice with elements
 	t := []string{"g", "h", "i"}
 	fmt.Println("dcl:", t) // dcl: [g h i]
-
-	if s[0] == "" {
-		fmt.Println("empty string")
-	}
-	// empty string
 
 	// setting and getting value is the same as for arrays
 	s[0] = "a"
@@ -67,4 +66,19 @@ func main() {
 		}
 	}
 	fmt.Println("2d: ", twoD) // [[0] [1 2] [2 3 4]]
+
+	// slice has an underlying array with some capacity, by using the second argument of make we can define it
+	{
+		slice := make([]int, 3)                       // defines 3 element-s slice backed by 3 elements array
+		fmt.Println("slice:", len(slice), cap(slice)) // slice: 3 3
+		slice = make([]int, 0, 3)                     // defines 0 element-s slice backed by 3 elements array
+		fmt.Println("slice:", len(slice), cap(slice)) // slice: 0 3
+		slice = append(slice, 1, 2, 3)
+		fmt.Println("slice:", len(slice), cap(slice)) // slice: 3 3
+		// it's still possible to append elements to this slice regardless the capacity is insufficient
+		// in such a scenario the slice will be "resliced" (a new array will be allocated)
+		slice = append(slice, 4)
+		fmt.Println("slice:", len(slice), cap(slice)) // slice: 4 6
+	}
+
 }
