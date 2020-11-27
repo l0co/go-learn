@@ -40,13 +40,20 @@ func main() {
 	// & means "address of"
 	// we assign addresses to pointer types: var pointer *int = &i
 
-	// an important lesson is: asssigning anything by variable means allocating it second time and creating an independent copy
+	// an important lesson is: asssigning anything by valyue means allocating it second time and creating an independent copy
 	// regardless it's primitive value, array, struct ...
 	{
 		arr1 := []int{1, 2, 3}
 		arr2 := arr1
 		fmt.Printf("%p\n", &arr1) // 0xc00009a020
 		fmt.Printf("%p\n", &arr2) // 0xc00009a040 -> a new array is allocated
+	}
+
+	// however, when no assignment to variable is done, converting pointer to value doesn't mean alocating a new variable:
+	{
+		fmt.Println(ipointer, &(*ipointer)) // 0xc0001a2010 0xc0001a2010
+		*ipointer = 2
+		fmt.Println(i) // 2
 	}
 
 }

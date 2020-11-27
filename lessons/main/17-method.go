@@ -2,32 +2,32 @@ package main
 
 import "fmt"
 
-type rect struct {
+type intrect struct {
 	width, height int
 }
 
-// this area method has a receiver type of *rect.
-func (r *rect) area() int {
+// this area method has a receiver type of *intrect.
+func (r *intrect) area() int {
 	return r.width * r.height
 }
 
 // methods can be defined for either pointer or value receiver types
-func (r rect) perim() int {
+func (r intrect) perim() int {
 	return 2*r.width + 2*r.height
 }
 
-func (r *rect) resetPointer() {
+func (r *intrect) resetPointer() {
 	r.width = 0
 	r.height = 0
 }
 
-func (r rect) resetValue() {
+func (r intrect) resetValue() {
 	r.width = 0
 	r.height = 0
 }
 
 func main() {
-	r := rect{width: 10, height: 5}
+	r := intrect{width: 10, height: 5}
 
 	// calling methods by struct value
 	fmt.Println("area: ", r.area())
