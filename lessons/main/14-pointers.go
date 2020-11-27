@@ -28,5 +28,16 @@ func main() {
 		_ = pointer
 	}
 
-	fmt.Println("pointer:", &i) // pointer: 0xc00001a0c8
+	ipointer := &i
+	fmt.Println("pointer:", ipointer) // pointer: 0xc00001a0c8
+
+	// we can convert pointer back to variable with *, but it allocates a new variable in memory
+	x := *ipointer
+	fmt.Println("x:", x, &x) // x: 0 0xc00001a110
+
+	// recap:
+	// * means pointer to (when used with type) and can also be used to convert pointers back to variables
+	// & means "address of"
+	// we assign addresses to pointer types: var pointer *int = &i
+
 }
