@@ -31,7 +31,21 @@ func test(c cint) {
 	c.b()
 }
 
+// it's also possible to compose struct of interfaces
+type intstruct2 struct {
+	cint
+}
+
 func main() {
 	s := intstruct{}
 	test(s)
+
+	// the following code produces PANIC error, but is compilable:
+
+	// s2 := intstruct2{}
+	// s2.a()
+
+	// implementation of `cint` interface in intstruct2 is explicite, and compiler allows it to be used here, however
+	// because the method is not really implemented by this struct, it throws PANIC
+
 }

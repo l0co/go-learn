@@ -66,4 +66,10 @@ func main() {
 	// structs are mutable
 	sp.age = 51
 	fmt.Println(sp.age)
+
+	// struct can be defined anonymously and immediately instantiated
+	x := struct {
+		a int
+	}{1}
+	fmt.Println(x) // {1}
 }
