@@ -73,4 +73,36 @@ func valueOrPointerInterfaceTest() {
 func main() {
 	interfacesTest()
 	valueOrPointerInterfaceTest()
+
+	// en empty interface can be everything
+	var emptyInterface interface{} // by default zero-valued empty interface is nil
+	fmt.Println(emptyInterface)    // <nil>
+	emptyInterface = "s"
+	fmt.Println(emptyInterface) // s
+	emptyInterface = 1
+	fmt.Println(emptyInterface) // 1
+
+	// after assigning something to interface (can be empty) you can use type assertions for this interface
+	{
+		// first return value is the value itself (of given type), the second is boolean true when the variable is of this type
+		val, isInt := emptyInterface.(int)
+		fmt.Println(val, isInt) // 1 true
+	}
+	{
+		val, isString := emptyInterface.(string)
+		fmt.Println(val, isString) // false (val has no value in such a scenario)
+		// fmt.Println(emptyInterface.(string)) // can't use this without the assignment above -> PANIC ERROR
+	}
+
+	// if you want to recover the variable from empty interface, you have to use type assertion
+	type xxx struct {
+		a int
+	}
+	emptyInterface = &xxx{1}
+
+	// fmt.Println(emptyInterface.a) // can't do it because emptyInterface doesn't have any fields
+	if xxxInstance, ok := emptyInterface.(*xxx); ok {
+		fmt.Println(xxxInstance.a) // 1
+	}
+
 }
