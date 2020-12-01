@@ -70,6 +70,14 @@ func valueOrPointerInterfaceTest() {
 	// so, if we have receiver method by pointer, type xint2 itself doesn't implement our interface, but POINTER to xint (*xint) DOES :)
 }
 
+// interface can be implemented by any type
+
+type myType int
+
+func (m myType) area() float64 {
+	return 0
+}
+
 func main() {
 	interfacesTest()
 	valueOrPointerInterfaceTest()
