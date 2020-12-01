@@ -40,7 +40,7 @@ func main() {
 	}
 	// fmt.Println(x) // no "x" here
 
-	// variable type case
+	// variable type cast
 	{
 		var x int = 1
 		fmt.Println(x, reflect.TypeOf(x)) // 1 int

@@ -1,6 +1,9 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+	"reflect"
+)
 
 // go has no classes but structs instead (but no inheritance)
 
@@ -39,7 +42,7 @@ func main() {
 	// you don't have to create a new person when variable is declared to fill it with zero-valued value (
 	//struct instance with all fields zero-valued)
 	var myPerson person
-	fmt.Println("myPerson", myPerson)
+	fmt.Println("myPerson", myPerson) // myPerson { 0}
 
 	{
 		p := newPerson("Jon")
@@ -77,4 +80,21 @@ func main() {
 		a int
 	}{1}
 	fmt.Println(x) // {1}
+
+	// struct field can have tags
+	{
+		type taggedStruct struct {
+			// F with capital letter is exported, // otherwise idea complains about unexported field with a tag
+			F string `someTag:"value" someOtherTag:"otherValue"` // this field has two tags
+		}
+
+		t := taggedStruct{F: "f"}
+		taggedStructType := reflect.TypeOf(t)
+		f, _ := taggedStructType.FieldByName("F")
+		fmt.Println(f.Name)                                                                       // F
+		fmt.Println(f.Type)                                                                       // string
+		fmt.Println(f.Tag)                                                                        // someTag:"value" someOtherTag:"otherValue"
+		fmt.Println(f.Tag.Get("someTag"), f.Tag.Get("someOtherTag"), f.Tag.Get("nonExistingTag")) // value otherValue (+empty string)
+	}
+
 }
