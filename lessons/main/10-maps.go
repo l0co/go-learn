@@ -35,4 +35,13 @@ func main() {
 	fmt.Println("el:", el)   // el: 0
 	fmt.Println("prs:", prs) // prs: false
 
+	// what happens on call to non-existing element?
+	fmt.Println(m["non-existing"])
+	// 0
+	// so, zero-valued element is retuned in this scenario
+	// to be more specific:
+	y, exists := m["non-existing"]
+	fmt.Println(y, exists)
+	// 0 false
+
 }
