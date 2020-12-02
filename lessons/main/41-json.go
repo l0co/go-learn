@@ -12,6 +12,7 @@ type response1 struct {
 	Fruits []string
 }
 
+// you can use struct tags to define exact field names
 type response2 struct {
 	Page   int      `json:"page"`
 	Fruits []string `json:"fruits"`
