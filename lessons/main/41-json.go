@@ -18,6 +18,12 @@ type response2 struct {
 	Fruits []string `json:"fruits"`
 }
 
+// usage of composite structs
+type response3 struct {
+	response2
+	A int `json:"a"`
+}
+
 func main() {
 
 	// marshalling = go -> json conversion
@@ -62,6 +68,14 @@ func main() {
 		Fruits: []string{"apple", "peach", "pear"}}
 	res2B, _ := json.Marshal(res2D)
 	fmt.Println(string(res2B)) // {"page":1,"fruits":["apple","peach","pear"]}
+
+	// composite struct example
+	res3D := response3{
+		response2: response2{1, []string{"apple", "peach", "pear"}},
+		A:         1,
+	}
+	res3B, _ := json.Marshal(res3D)
+	fmt.Println(string(res3B)) // {"page":1,"fruits":["apple","peach","pear"],"a":1}
 
 	// unmarshalling = json -> go conversion
 
