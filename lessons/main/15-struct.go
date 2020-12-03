@@ -40,9 +40,13 @@ func main() {
 	fmt.Println(&person{name: "Ann", age: 40})  // a struct pointer can be created immediately: &{Ann 40}
 
 	// you don't have to create a new person when variable is declared to fill it with zero-valued value (
-	//struct instance with all fields zero-valued)
+	// struct instance with all fields zero-valued)
 	var myPerson person
 	fmt.Println("myPerson", myPerson) // myPerson { 0}
+
+	// however the uninitialized pointer is empty (nil) and no allocation is done
+	var myPersonP *person
+	fmt.Println("myPersonP", myPersonP) // myPerson <nil>
 
 	{
 		p := newPerson("Jon")
